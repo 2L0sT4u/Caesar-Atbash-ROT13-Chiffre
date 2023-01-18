@@ -94,7 +94,7 @@
             this.panel02.Controls.Add(this.btnKlein);
             this.panel02.Controls.Add(this.btnGroß);
             this.panel02.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel02.Location = new System.Drawing.Point(0, 274);
+            this.panel02.Location = new System.Drawing.Point(0, 270);
             this.panel02.Name = "panel02";
             this.panel02.Size = new System.Drawing.Size(260, 150);
             this.panel02.TabIndex = 8;
@@ -147,7 +147,7 @@
             this.button5.Dock = System.Windows.Forms.DockStyle.Top;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button5.Location = new System.Drawing.Point(0, 214);
+            this.button5.Location = new System.Drawing.Point(0, 210);
             this.button5.Name = "button5";
             this.button5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 8);
             this.button5.Size = new System.Drawing.Size(260, 60);
@@ -164,7 +164,7 @@
             this.panel01.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel01.Location = new System.Drawing.Point(0, 60);
             this.panel01.Name = "panel01";
-            this.panel01.Size = new System.Drawing.Size(260, 154);
+            this.panel01.Size = new System.Drawing.Size(260, 150);
             this.panel01.TabIndex = 6;
             // 
             // btn3

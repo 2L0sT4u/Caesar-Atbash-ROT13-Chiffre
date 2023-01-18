@@ -13,140 +13,7 @@ namespace D_Dürgerow_Chiffre
 
         bool chiff = true; // boolean, true->chiffrieren, false->dechiffrieren
         string chiffre = "Cäsar"; //string zum speichern des ausgewählten chiffre
-        string Text1 = ""; //string zum speichern des ersten Textes (Eingabe)
         int verschiebung; //int zum Speichern der Anzahl der Stellen, um die in Cäsar verschoben werden soll
-
-        //Array mit Groß und Kleinbuchstaben und Leerzeichen
-        char[] Buchstaben = "abcdefghijklmnopqrstuvwxyzßäöüABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ".ToCharArray();        
-
-        private void Übersetzen() //Text1 wird (de-)chiffriert und in Text2 gespeichert
-        {
-            Text1 = textBox1.Text; //Eingabe in Text1 speichern
-            string Text02 = string.Empty;
-            char[] Text01 = Text1.ToCharArray();
-
-            switch (chiffre) //Überprüfung, welches Chiffre ausgewählt ist
-            {
-                case "Cäsar": //wenn Cäsar ausgewählt
-                    verschiebung = (int)numericUpDown1.Value; //Anzahl der Verschiebungen speichern
-
-                    switch (chiff)
-                    {
-                        case true: //Cäsar chiffrieren
-
-                            foreach (char ch in Text01)
-                            {
-                                if (Buchstaben.Contains(ch))
-                                {
-                                    int x = Array.IndexOf(Buchstaben, ch) + verschiebung;
-                                    if (x > Buchstaben.Length) x %= Buchstaben.Length;
-                                    Text02 += Buchstaben[x];
-                                }
-                                else
-                                {
-                                    Text02 += ch;
-                                }
-                            }
-                            textBox2.Text = Text02;
-
-                            break;
-
-                        case false: //Cäsar dechiffrieren
-
-                            break;
-                    }
-                    break;
-
-                case "Atbash": //wenn Atbash ausgewählt
-                    switch (chiff)
-                    {
-                        case true: //Atbash chiffrieren
-
-                            foreach (char ch in Text01)
-                            {
-                                if (Buchstaben.Contains(ch))
-                                {
-
-                                    Text02 += Buchstaben[(Buchstaben.Length - Array.IndexOf(Buchstaben, ch)) % Buchstaben.Length] ;
-                                }
-                                else
-                                {
-                                    Text02 += ch;
-                                }
-                            }
-                            textBox2.Text = Text02;
-
-                            break;
-
-                        case false: // Atbash dechiffrieren
-
-                            foreach (char ch in Text01)
-                            {
-                                if (Buchstaben.Contains(ch))
-                                {
-                                    int x = Buchstaben.Length - (Array.IndexOf(Buchstaben, ch) % Buchstaben.Length);
-                                    Text02 += Buchstaben[x];
-                                }
-                                else
-                                {
-                                    Text02 += ch;
-                                }
-                            }
-                            textBox2.Text = Text02;
-
-                            break;
-                    }
-                    break;
-
-                case "ROT13": //wenn ROT13 ausgewählt
-                    switch (chiff)
-                    {
-                        case true:
-
-                            foreach (char ch in Text01)
-                            {
-                                if (Buchstaben.Contains(ch))
-                                {
-                                    int x = Array.IndexOf(Buchstaben, ch) + 13;
-                                    if (x > Buchstaben.Length) x %= Buchstaben.Length;
-                                    Text02 += Buchstaben[x];
-                                }
-                                else
-                                {
-                                    Text02 += ch;
-                                }
-                            }
-                            textBox2.Text = Text02;
-
-                            break;
-
-                        case false:
-
-                            foreach (char ch in Text01)
-                            {
-                                if (Buchstaben.Contains(ch))
-                                {
-                                    int x = Array.IndexOf(Buchstaben, ch) - 13;
-                                    if (x > Buchstaben.Length) x %= Buchstaben.Length;
-                                    Text02 += Buchstaben[x];
-                                }
-                                else
-                                {
-                                    Text02 += ch;
-                                }
-                            }
-                            textBox2.Text = Text02;
-
-                            break;
-                    }
-                    break;
-
-                default: //Fehlermeldung, wenn keines der drei Chiffre ausgewählt ist
-                    MessageBox.Show("Fehler: kein Chiffre ausgewählt", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-            }
-        }
-
 
         private void button1_Click(object sender, EventArgs e) //button Chiffre
         {
@@ -180,7 +47,7 @@ namespace D_Dürgerow_Chiffre
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e) //bei klick auf doppelpfeil ->
+        private void pictureBox1_Click(object sender, EventArgs e) //bei klick auf doppelpfeil
         {
             //Klartext und Geheimtext tauschen
             string i = textBox1.Text;
@@ -201,6 +68,8 @@ namespace D_Dürgerow_Chiffre
             numericUpDown1.Visible = true; //numericUpDown-Komponente, um für Cäsar n festzulegen wird sichtbar
             label1.Visible = true; //text vor numericUpDown ebenfalls sichtbar
             label2.Visible = true; //text nach numericUpDown ebenfalls sichtbar
+            textBox1.Text = string.Empty; 
+            textBox2.Text = string.Empty;
         }
 
         private void btn2_Click(object sender, EventArgs e) //button Atbash
@@ -210,6 +79,8 @@ namespace D_Dürgerow_Chiffre
             numericUpDown1.Visible = false; //numericUpDown-Komponente, um für Cäsar n festzulegen wird nicht sichtbar
             label1.Visible = false; //text vor numericUpDown ebenfalls nicht sichtbar
             label2.Visible = false; //text nach numericUpDown ebenfalls nicht sichtbar
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
         }
 
         private void btn3_Click(object sender, EventArgs e) //button ROT13
@@ -219,6 +90,8 @@ namespace D_Dürgerow_Chiffre
             numericUpDown1.Visible = false; // numericUpDown - Komponente, um für Cäsar n festzulegen wird nicht sichtbar
             label1.Visible = false; //text vor numericUpDown ebenfalls nicht sichtbar
             label2.Visible = false; //text nach numericUpDown ebenfalls nicht sichtbar
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e) //Anzahl um wie viel verschoben werden soll in Variable speichern
@@ -226,22 +99,17 @@ namespace D_Dürgerow_Chiffre
             verschiebung = ((int)numericUpDown1.Value); //Anzahl um wie viel verschoben werden soll in Variable speichern
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            Übersetzen();
-        }
-
         private void btnGroß_Click(object sender, EventArgs e)
         {
             string Text = textBox2.Text;
-            Text=Text.ToUpper();
+            Text = Text.ToUpper();
             textBox2.Text = Text;
         }
 
         private void btnKlein_Click(object sender, EventArgs e)
         {
             string Text = textBox2.Text;
-            Text= Text.ToLower();
+            Text = Text.ToLower();
             textBox2.Text = Text;
         }
 
@@ -256,5 +124,116 @@ namespace D_Dürgerow_Chiffre
                 textBox2.Text += x;
             }
         }
+
+
+
+        private void textBox1_TextChanged(object sender, EventArgs e) //Übersetzen, wenn Text sich ändert
+        {
+            switch (chiffre)
+            {
+                case "Cäsar":
+                    if (chiff == true) Caeser(textBox1.Text, verschiebung); else CaeserDe(textBox1.Text, verschiebung);
+                    break;
+                case "Atbash":
+                    Atbash(textBox1.Text);
+                    break;
+                case "ROT13":
+                    if (chiff == true) ROT13(textBox1.Text); else ROT13De(textBox1.Text);
+                    break;
+            }
+        }
+
+        //Algorithmen
+
+        public void Caeser(string s, int v)
+        {
+            char[] Eingabe = s.ToCharArray();
+            string Ausgabe = string.Empty;
+
+            foreach(char ch in Eingabe)
+            {
+                int x = (int)ch;
+                x += v;
+                Ausgabe += (char)x;
+            }
+            textBox2.Text = Ausgabe;
+        }
+
+        public void CaeserDe(string s, int v)
+        {
+            char[] Eingabe = s.ToCharArray();
+            string Ausgabe = string.Empty;
+
+            foreach (char ch in Eingabe)
+            {
+                int x = (int)ch;
+                x -= v; 
+                if(x <= 0) x %= -255;
+                Ausgabe += (char)x;
+            }
+            textBox2.Text = Ausgabe;
+        }
+
+
+        public void Atbash(string s)
+        {
+            string Buchstaben = "abcdefghijklmnopqrstuvwxyzßäöü";
+            string BuchstabenG = "ABCDEFGHIJKLMNOPQRSTUVWXYZßÄÖÜ";
+
+            char[] Eingabe = s.ToCharArray();
+            string Ausgabe = string.Empty;
+
+            for (int i = 0; i < Eingabe.Length; i++)
+            {
+                if (Char.IsLetter(Eingabe[i]))
+                {
+                    if (Buchstaben.Contains(Eingabe[i]))
+                    {
+                        Ausgabe += (char)('z' - (Eingabe[i] - 'a'));
+                    }
+                    if (BuchstabenG.Contains(Eingabe[i]))
+                    {
+                        Ausgabe += (char)('Z' - (Eingabe[i] - 'A'));
+                    }
+
+                }
+                else
+                {
+                    Ausgabe += Eingabe[i];
+                }
+            }
+            textBox2.Text = Ausgabe;
+        }
+
+
+        public void ROT13(string s)
+        {
+            char[] Eingabe = s.ToCharArray();
+            string Ausgabe = string.Empty;
+
+            foreach (char ch in Eingabe)
+            {
+                int x = (int)ch;
+                x += 13;
+                Ausgabe += (char)x;
+            }
+            textBox2.Text = Ausgabe;
+        }
+
+        public void ROT13De(string s)
+        {
+            char[] Eingabe = s.ToCharArray();
+            string Ausgabe = string.Empty;
+
+            foreach (char ch in Eingabe)
+            {
+                int x = (int)ch;
+                x -= 13;
+                Ausgabe += (char)x;
+            }
+            textBox2.Text = Ausgabe;
+        }
+
+
     }
 }
