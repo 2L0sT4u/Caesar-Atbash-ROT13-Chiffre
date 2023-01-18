@@ -9,36 +9,21 @@ namespace D_Dürgerow_Chiffre
             panel02.Visible = false; //Panel auf dem Knöpfe für verschiedene Optionen sind, ist zu beginn nicht sichtbar
             this.MaximizeBox = false; //verhindert, dass das Formular maximiert werden kann (Vollbild)
             this.FormBorderStyle = FormBorderStyle.FixedSingle; //verhindert, dass die Größe des Formulares verändert werden kann
-
-            while (abcd == true) Übersetzen(); // Übersetzen dauerhaft ausführen
         }
 
-        bool abcd = true; //benötigt, um ÜBersetzten() dauerhaft laufen zu lassen
         bool chiff = true; // boolean, true->chiffrieren, false->dechiffrieren
-        bool Leerzeichen = false; //boolean, ob Leerzeichen entfernt werden oder nicht
-        string GKBuchstaben = "GroßUndKlein"; //string zum Speichern, ob Groß, Klein oder Groß und Kleinbuchstaben
         string chiffre = "Cäsar"; //string zum speichern des ausgewählten chiffre
         string Text1 = ""; //string zum speichern des ersten Textes (Eingabe)
-        string Text2 = ""; //string zum speichern des zweiten Textes (Ausgabe)
         int verschiebung; //int zum Speichern der Anzahl der Stellen, um die in Cäsar verschoben werden soll
 
         //Array mit Groß und Kleinbuchstaben und Leerzeichen
-        string[] Buchstaben = { " ", "a", "b", "c", "d", "e", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "ä", "ö", "ü", "ß", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Ä", "Ö", "Ü", "ß" };
-        //Array mit Groß und Kleinbuchstaben, ohne Leerzeichen
-        string[] BuchstabenOL = { "a", "b", "c", "d", "e", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "ä", "ö", "ü", "ß", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Ä", "Ö", "Ü", "ß" };
-        //Array mit Großbuchstaben und Leerzeichen
-        string[] Großbuchstaben = { " ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Ä", "Ö", "Ü", "ß" };
-        //Array mit Großbuchstaben, ohne Leerzeichen
-        string[] GroßbuchstabenOL = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Ä", "Ö", "Ü", "ß" };
-        //Arraymit Kleinbuchstaben und Leerzeichen
-        string[] Kleinbuchstaben = { " ", "a", "b", "c", "d", "e", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "ä", "ö", "ü", "ß" };
-        //Array mit Kleinbuchstaben, ohne Leerzeichen
-        string[] KleinbuchstabenOL = { "a", "b", "c", "d", "e", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "ä", "ö", "ü", "ß" };
-
+        char[] Buchstaben = "abcdefghijklmnopqrstuvwxyzßäöüABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ".ToCharArray();        
 
         private void Übersetzen() //Text1 wird (de-)chiffriert und in Text2 gespeichert
         {
             Text1 = textBox1.Text; //Eingabe in Text1 speichern
+            string Text02 = string.Empty;
+            char[] Text01 = Text1.ToCharArray();
 
             switch (chiffre) //Überprüfung, welches Chiffre ausgewählt ist
             {
@@ -49,17 +34,24 @@ namespace D_Dürgerow_Chiffre
                     {
                         case true: //Cäsar chiffrieren
 
-
-
-
+                            foreach (char ch in Text01)
+                            {
+                                if (Buchstaben.Contains(ch))
+                                {
+                                    int x = Array.IndexOf(Buchstaben, ch) + verschiebung;
+                                    if (x > Buchstaben.Length) x %= Buchstaben.Length;
+                                    Text02 += Buchstaben[x];
+                                }
+                                else
+                                {
+                                    Text02 += ch;
+                                }
+                            }
+                            textBox2.Text = Text02;
 
                             break;
 
                         case false: //Cäsar dechiffrieren
-
-
-
-
 
                             break;
                     }
@@ -70,17 +62,37 @@ namespace D_Dürgerow_Chiffre
                     {
                         case true: //Atbash chiffrieren
 
+                            foreach (char ch in Text01)
+                            {
+                                if (Buchstaben.Contains(ch))
+                                {
 
-
-
+                                    Text02 += Buchstaben[(Buchstaben.Length - Array.IndexOf(Buchstaben, ch)) % Buchstaben.Length] ;
+                                }
+                                else
+                                {
+                                    Text02 += ch;
+                                }
+                            }
+                            textBox2.Text = Text02;
 
                             break;
 
                         case false: // Atbash dechiffrieren
 
-
-
-
+                            foreach (char ch in Text01)
+                            {
+                                if (Buchstaben.Contains(ch))
+                                {
+                                    int x = Buchstaben.Length - (Array.IndexOf(Buchstaben, ch) % Buchstaben.Length);
+                                    Text02 += Buchstaben[x];
+                                }
+                                else
+                                {
+                                    Text02 += ch;
+                                }
+                            }
+                            textBox2.Text = Text02;
 
                             break;
                     }
@@ -89,19 +101,41 @@ namespace D_Dürgerow_Chiffre
                 case "ROT13": //wenn ROT13 ausgewählt
                     switch (chiff)
                     {
-                        case true: //ROT13 chiffrieren
+                        case true:
 
-
-
-
+                            foreach (char ch in Text01)
+                            {
+                                if (Buchstaben.Contains(ch))
+                                {
+                                    int x = Array.IndexOf(Buchstaben, ch) + 13;
+                                    if (x > Buchstaben.Length) x %= Buchstaben.Length;
+                                    Text02 += Buchstaben[x];
+                                }
+                                else
+                                {
+                                    Text02 += ch;
+                                }
+                            }
+                            textBox2.Text = Text02;
 
                             break;
 
-                        case false: //ROT13 dechiffrieren
+                        case false:
 
-
-
-
+                            foreach (char ch in Text01)
+                            {
+                                if (Buchstaben.Contains(ch))
+                                {
+                                    int x = Array.IndexOf(Buchstaben, ch) - 13;
+                                    if (x > Buchstaben.Length) x %= Buchstaben.Length;
+                                    Text02 += Buchstaben[x];
+                                }
+                                else
+                                {
+                                    Text02 += ch;
+                                }
+                            }
+                            textBox2.Text = Text02;
 
                             break;
                     }
@@ -125,6 +159,7 @@ namespace D_Dürgerow_Chiffre
 
                 case false:
                     panel01.Visible = true; //zuklappen
+                    panel02.Visible = false; //anderes zuklappen
                     break;
             }
         }
@@ -140,6 +175,7 @@ namespace D_Dürgerow_Chiffre
 
                 case false:
                     panel02.Visible = true; //zuklappen
+                    panel01.Visible = false; //anderes zuklappen
                     break;
             }
         }
@@ -147,9 +183,13 @@ namespace D_Dürgerow_Chiffre
         private void pictureBox1_Click(object sender, EventArgs e) //bei klick auf doppelpfeil ->
         {
             //Klartext und Geheimtext tauschen
-            string i = lblSp1.Text;
+            string i = textBox1.Text;
+            textBox1.Text = textBox2.Text;
+            textBox2.Text = i;
+
+            string o = lblSp1.Text;
             lblSp1.Text = lblSp2.Text;
-            lblSp2.Text = i;
+            lblSp2.Text = o;
 
             chiff = chiff == true ? chiff = false : chiff = true; //wenn chiff=true mach chiff=false ... wenn chiff =/= true (=false) mach chiff=true
         }
@@ -186,9 +226,35 @@ namespace D_Dürgerow_Chiffre
             verschiebung = ((int)numericUpDown1.Value); //Anzahl um wie viel verschoben werden soll in Variable speichern
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            Leerzeichen = Leerzeichen == true ? Leerzeichen = false : Leerzeichen = true; //wenn Leerzeichen=true mach Leerzeichen=false ... wenn Leerzeichen =/= true (=false) mach Leerzeichen=true
+            Übersetzen();
+        }
+
+        private void btnGroß_Click(object sender, EventArgs e)
+        {
+            string Text = textBox2.Text;
+            Text=Text.ToUpper();
+            textBox2.Text = Text;
+        }
+
+        private void btnKlein_Click(object sender, EventArgs e)
+        {
+            string Text = textBox2.Text;
+            Text= Text.ToLower();
+            textBox2.Text = Text;
+        }
+
+        private void btnLZE_Click(object sender, EventArgs e)
+        {
+            char[] list = textBox2.Text.ToCharArray();
+            textBox2.Text = string.Empty;
+            foreach (char ch in list)
+            {
+                string x = ch.ToString();
+                if (x == " ") x = string.Empty;
+                textBox2.Text += x;
+            }
         }
     }
 }
