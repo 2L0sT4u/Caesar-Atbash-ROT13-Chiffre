@@ -31,8 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel02 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnLZE = new System.Windows.Forms.Button();
-            this.btnKlein = new System.Windows.Forms.Button();
             this.btnGroß = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.panel01 = new System.Windows.Forms.Panel();
@@ -90,14 +91,43 @@
             // panel02
             // 
             this.panel02.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(47)))), ((int)(((byte)(80)))));
+            this.panel02.Controls.Add(this.button3);
+            this.panel02.Controls.Add(this.button2);
             this.panel02.Controls.Add(this.btnLZE);
-            this.panel02.Controls.Add(this.btnKlein);
             this.panel02.Controls.Add(this.btnGroß);
             this.panel02.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel02.Location = new System.Drawing.Point(0, 270);
             this.panel02.Name = "panel02";
-            this.panel02.Size = new System.Drawing.Size(260, 150);
+            this.panel02.Size = new System.Drawing.Size(260, 200);
             this.panel02.TabIndex = 8;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(68)))), ((int)(((byte)(114)))));
+            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button3.Location = new System.Drawing.Point(0, 150);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(260, 50);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "aufräumen";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(68)))), ((int)(((byte)(114)))));
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(0, 100);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(260, 50);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "ASCII";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnLZE
             // 
@@ -105,27 +135,13 @@
             this.btnLZE.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnLZE.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLZE.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnLZE.Location = new System.Drawing.Point(0, 100);
+            this.btnLZE.Location = new System.Drawing.Point(0, 50);
             this.btnLZE.Name = "btnLZE";
             this.btnLZE.Size = new System.Drawing.Size(260, 50);
             this.btnLZE.TabIndex = 11;
             this.btnLZE.Text = "Leerzeichen entfernen";
             this.btnLZE.UseVisualStyleBackColor = false;
             this.btnLZE.Click += new System.EventHandler(this.btnLZE_Click);
-            // 
-            // btnKlein
-            // 
-            this.btnKlein.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(68)))), ((int)(((byte)(114)))));
-            this.btnKlein.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnKlein.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnKlein.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnKlein.Location = new System.Drawing.Point(0, 50);
-            this.btnKlein.Name = "btnKlein";
-            this.btnKlein.Size = new System.Drawing.Size(260, 50);
-            this.btnKlein.TabIndex = 10;
-            this.btnKlein.Text = "alles klein";
-            this.btnKlein.UseVisualStyleBackColor = false;
-            this.btnKlein.Click += new System.EventHandler(this.btnKlein_Click);
             // 
             // btnGroß
             // 
@@ -137,7 +153,7 @@
             this.btnGroß.Name = "btnGroß";
             this.btnGroß.Size = new System.Drawing.Size(260, 50);
             this.btnGroß.TabIndex = 9;
-            this.btnGroß.Text = "alles groß";
+            this.btnGroß.Text = "Groß und Klein";
             this.btnGroß.UseVisualStyleBackColor = false;
             this.btnGroß.Click += new System.EventHandler(this.btnGroß_Click);
             // 
@@ -299,7 +315,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(266, 9);
+            this.label2.Location = new System.Drawing.Point(278, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 20);
             this.label2.TabIndex = 6;
@@ -309,7 +325,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(89, 9);
+            this.label1.Location = new System.Drawing.Point(101, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 20);
             this.label1.TabIndex = 5;
@@ -318,9 +334,9 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numericUpDown1.Location = new System.Drawing.Point(207, 9);
+            this.numericUpDown1.Location = new System.Drawing.Point(219, 9);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            1000,
+            52,
             0,
             0,
             0});
@@ -477,7 +493,8 @@
         private NumericUpDown numericUpDown1;
         private Label label2;
         private Label label1;
-        private Button btnKlein;
         private Button btnLZE;
+        private Button button2;
+        private Button button3;
     }
 }

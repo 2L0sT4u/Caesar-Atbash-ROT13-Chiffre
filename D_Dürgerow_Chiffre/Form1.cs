@@ -13,7 +13,11 @@ namespace D_Dürgerow_Chiffre
 
         bool chiff = true; // boolean, true->chiffrieren, false->dechiffrieren
         string chiffre = "Cäsar"; //string zum speichern des ausgewählten chiffre
-        int verschiebung; //int zum Speichern der Anzahl der Stellen, um die in Cäsar verschoben werden soll
+        int schlüssel; //int zum Speichern der Anzahl der Stellen, um die in Cäsar verschoben werden soll
+        string buchstaben = "GroßUndKlein";
+        string leerzeichen = "behalten";
+        string zeichen = "ASCII";
+        int wiederholungen = 1;
 
         private void button1_Click(object sender, EventArgs e) //button Chiffre
         {
@@ -50,13 +54,8 @@ namespace D_Dürgerow_Chiffre
         private void pictureBox1_Click(object sender, EventArgs e) //bei klick auf doppelpfeil
         {
             //Klartext und Geheimtext tauschen
-            string i = textBox1.Text;
-            textBox1.Text = textBox2.Text;
-            textBox2.Text = i;
-
-            string o = lblSp1.Text;
-            lblSp1.Text = lblSp2.Text;
-            lblSp2.Text = o;
+            (textBox1.Text, textBox2.Text) = (textBox2.Text, textBox1.Text);
+            (lblSp1.Text, lblSp2.Text) = (lblSp2.Text, lblSp1.Text);
 
             chiff = chiff == true ? chiff = false : chiff = true; //wenn chiff=true mach chiff=false ... wenn chiff =/= true (=false) mach chiff=true
         }
@@ -68,7 +67,7 @@ namespace D_Dürgerow_Chiffre
             numericUpDown1.Visible = true; //numericUpDown-Komponente, um für Cäsar n festzulegen wird sichtbar
             label1.Visible = true; //text vor numericUpDown ebenfalls sichtbar
             label2.Visible = true; //text nach numericUpDown ebenfalls sichtbar
-            textBox1.Text = string.Empty; 
+            textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
         }
 
@@ -96,35 +95,40 @@ namespace D_Dürgerow_Chiffre
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e) //Anzahl um wie viel verschoben werden soll in Variable speichern
         {
-            verschiebung = ((int)numericUpDown1.Value); //Anzahl um wie viel verschoben werden soll in Variable speichern
-        }
-
-        private void btnGroß_Click(object sender, EventArgs e)
-        {
-            string Text = textBox2.Text;
-            Text = Text.ToUpper();
-            textBox2.Text = Text;
-        }
-
-        private void btnKlein_Click(object sender, EventArgs e)
-        {
-            string Text = textBox2.Text;
-            Text = Text.ToLower();
-            textBox2.Text = Text;
+            schlüssel = ((int)numericUpDown1.Value); //Anzahl um wie viel verschoben werden soll in Variable speichern
         }
 
         private void btnLZE_Click(object sender, EventArgs e)
         {
-            char[] list = textBox2.Text.ToCharArray();
-            textBox2.Text = string.Empty;
-            foreach (char ch in list)
+            if (btnLZE.Text == "Leerzeichen entfernen")
             {
-                string x = ch.ToString();
-                if (x == " ") x = string.Empty;
-                textBox2.Text += x;
+                btnLZE.Text = "Leerzeichen behalten";
+                leerzeichen = "behalten";
+            }
+            else
+            {
+                btnLZE.Text = "Leerzeichen entfernen";
+                leerzeichen = "entfernen";
             }
         }
-
+        private void btnGroß_Click(object sender, EventArgs e)
+        {
+            if (btnGroß.Text == "alles Groß")
+            {
+                btnGroß.Text = "alles Klein";
+                buchstaben = "Klein";
+            }
+            else if (btnGroß.Text == "alles Klein")
+            {
+                btnGroß.Text = "Groß und Klein";
+                buchstaben = "GroßUndKlein";
+            }
+            else
+            {
+                btnGroß.Text = "alles Groß";
+                buchstaben = "Groß";
+            }
+        }
 
 
         private void textBox1_TextChanged(object sender, EventArgs e) //Übersetzen, wenn Text sich ändert
@@ -132,108 +136,49 @@ namespace D_Dürgerow_Chiffre
             switch (chiffre)
             {
                 case "Cäsar":
-                    if (chiff == true) Caeser(textBox1.Text, verschiebung); else CaeserDe(textBox1.Text, verschiebung);
+                    if (chiff == true)
+                    {
+                        textBox2.Text = Chiffre.Caesar(textBox1.Text, schlüssel, zeichen, leerzeichen, buchstaben, wiederholungen);
+                    }
+                    else
+                    {
+                        textBox2.Text = Chiffre.Caesar(textBox1.Text, schlüssel * -1, zeichen, leerzeichen, buchstaben, wiederholungen);
+                    }
                     break;
-                case "Atbash":
-                    Atbash(textBox1.Text);
+                case "Atbash":    
+                        textBox2.Text = Chiffre.Atbash(textBox1.Text, zeichen, leerzeichen, buchstaben, wiederholungen);
                     break;
                 case "ROT13":
-                    if (chiff == true) ROT13(textBox1.Text); else ROT13De(textBox1.Text);
+                    if (chiff == true)
+                    {
+                        textBox2.Text = Chiffre.Caesar(textBox1.Text, 13, zeichen, leerzeichen, buchstaben, wiederholungen);
+                    }
+                    else
+                    {
+                        textBox2.Text = Chiffre.Caesar(textBox1.Text, -13, zeichen, leerzeichen, buchstaben, wiederholungen);
+                    }
                     break;
             }
         }
 
-        //Algorithmen
-
-        public void Caeser(string s, int v)
+        private void button2_Click(object sender, EventArgs e)
         {
-            char[] Eingabe = s.ToCharArray();
-            string Ausgabe = string.Empty;
-
-            foreach(char ch in Eingabe)
+            if (button2.Text == "ASCII")
             {
-                int x = (int)ch;
-                x += v;
-                Ausgabe += (char)x;
+                button2.Text = "Alphabet";
+                zeichen = "Alphabet";
             }
-            textBox2.Text = Ausgabe;
+            else
+            {
+                button2.Text = "ASCII";
+                zeichen = "ASCII";
+            }
         }
 
-        public void CaeserDe(string s, int v)
+        private void button3_Click(object sender, EventArgs e)
         {
-            char[] Eingabe = s.ToCharArray();
-            string Ausgabe = string.Empty;
-
-            foreach (char ch in Eingabe)
-            {
-                int x = (int)ch;
-                x -= v; 
-                if(x <= 0) x %= -255;
-                Ausgabe += (char)x;
-            }
-            textBox2.Text = Ausgabe;
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
         }
-
-
-        public void Atbash(string s)
-        {
-            string Buchstaben = "abcdefghijklmnopqrstuvwxyzßäöü";
-            string BuchstabenG = "ABCDEFGHIJKLMNOPQRSTUVWXYZßÄÖÜ";
-
-            char[] Eingabe = s.ToCharArray();
-            string Ausgabe = string.Empty;
-
-            for (int i = 0; i < Eingabe.Length; i++)
-            {
-                if (Char.IsLetter(Eingabe[i]))
-                {
-                    if (Buchstaben.Contains(Eingabe[i]))
-                    {
-                        Ausgabe += (char)('z' - (Eingabe[i] - 'a'));
-                    }
-                    if (BuchstabenG.Contains(Eingabe[i]))
-                    {
-                        Ausgabe += (char)('Z' - (Eingabe[i] - 'A'));
-                    }
-
-                }
-                else
-                {
-                    Ausgabe += Eingabe[i];
-                }
-            }
-            textBox2.Text = Ausgabe;
-        }
-
-
-        public void ROT13(string s)
-        {
-            char[] Eingabe = s.ToCharArray();
-            string Ausgabe = string.Empty;
-
-            foreach (char ch in Eingabe)
-            {
-                int x = (int)ch;
-                x += 13;
-                Ausgabe += (char)x;
-            }
-            textBox2.Text = Ausgabe;
-        }
-
-        public void ROT13De(string s)
-        {
-            char[] Eingabe = s.ToCharArray();
-            string Ausgabe = string.Empty;
-
-            foreach (char ch in Eingabe)
-            {
-                int x = (int)ch;
-                x -= 13;
-                Ausgabe += (char)x;
-            }
-            textBox2.Text = Ausgabe;
-        }
-
-
     }
 }
