@@ -2,7 +2,7 @@
 {
     static class Chiffre
     {
-        public static string Caesar(string klartext, int schlüssel, string zeichen, string leerzeichen, string buchstaben, int wiederholungen)
+        public static string Caesar(string klartext, int schlüssel, string zeichen, bool leerzeichen, string buchstaben, int wiederholungen)
         {
             // zeichen -> 'ASCII' oder 'Alphabet'
             // leerzeichen -> Leerzeichen 'behalten' oder 'entfernen'
@@ -25,8 +25,6 @@
                     hilfsstring = string.Empty;
                     text = geheimtext.ToCharArray();
                 }
-                geheimtext = LeerzeichenPrüfen(geheimtext, leerzeichen);
-                geheimtext = BuchstabenPrüfen(geheimtext, buchstaben);
             }
             else
             {
@@ -68,13 +66,14 @@
                     text = geheimtext.ToCharArray();
 
                 }
-                geheimtext = LeerzeichenPrüfen(geheimtext, leerzeichen);
-                geheimtext = BuchstabenPrüfen(geheimtext, buchstaben);
+
             }
+            geheimtext = LeerzeichenPrüfen(geheimtext, leerzeichen);
+            geheimtext = BuchstabenPrüfen(geheimtext, buchstaben);
 
             return geheimtext;
         }
-        public static string Atbash(string klartext, string zeichen, string leerzeichen, string buchstaben, int wiederholungen)
+        public static string Atbash(string klartext, string zeichen, bool leerzeichen, string buchstaben, int wiederholungen)
         {
             string geheimtext = string.Empty;
             char[] text = klartext.ToCharArray();
@@ -84,17 +83,18 @@
 
             for (int i = 0; i < wiederholungen; i++)
             {
+                string hilfsstring = string.Empty;
                 for (int j = 0; j < text.Length; j++)
                 {
                     if (Char.IsLetter(text[j]))
                     {
                         if (Buchstaben.Contains(text[j]))
                         {
-                            geheimtext += (char)('z' - (text[j] - 'a'));
+                            hilfsstring += (char)('z' - (text[j] - 'a'));
                         }
                         if (BuchstabenG.Contains(text[j]))
                         {
-                            geheimtext += (char)('Z' - (text[j] - 'A'));
+                            hilfsstring += (char)('Z' - (text[j] - 'A'));
                         }
                     }
                     else
@@ -102,6 +102,9 @@
                         geheimtext += text[j];
                     }
                 }
+                geheimtext = hilfsstring;
+                hilfsstring = string.Empty;
+                text = geheimtext.ToCharArray();
             }
             geheimtext = LeerzeichenPrüfen(geheimtext, leerzeichen);
             geheimtext = BuchstabenPrüfen(geheimtext, buchstaben);
@@ -109,18 +112,11 @@
             return geheimtext;
         }
 
-        public static string LeerzeichenPrüfen(string text, string leerzeichen)
+        public static string LeerzeichenPrüfen(string text, bool leerzeichen)
         {
-            if (leerzeichen == "entfernen")
+            if (leerzeichen == false)
             {
-                char[] chars = text.ToCharArray();
-                text = string.Empty;
-                foreach (char ch in chars)
-                {
-                    string hilfsstring = ch.ToString();
-                    if (hilfsstring == " ") hilfsstring = string.Empty;
-                    text += hilfsstring;
-                }
+                text.Replace(" ", "");
             }
 
             return text;
@@ -141,7 +137,8 @@
                 {
                     text1 += (int)ch < 91 ? (char)((int)ch + 33) : ch;
                 }
-            }else if(buchstaben == "GroßUndKlein")
+            }
+            else if (buchstaben == "GroßUndKlein")
             {
                 text1 = text;
             }

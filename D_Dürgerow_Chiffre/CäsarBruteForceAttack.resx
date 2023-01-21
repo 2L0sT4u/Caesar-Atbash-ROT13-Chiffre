@@ -57,25 +57,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAeJJREFUWEfFl7lNBEEQRUfCwsElAfDBQ0IiD/CJghTIABELBAAWWXCYYIAB/7X2
-        o9o5q2d3NV960qqmjma6q3poKnQgLsWdeBJv4mcFv7HxDB98t6ZjcS8+xW8SfIkhdrb2xa34Fn1FMhBL
-        DnJV6Ui8iHbCZ3EjLsSh2FvBb2w8w6cdRy5ypnQiXkVM8CjORVb4EhNzkPNUjIpVxuLs5bWYK2Lj2SH3
-        4Jtgn+Jr/xBnYlORg1zOS43eM8FhsROr3kZxi1zxTVBrTbRLPO2Z125fMyVy2pdaay1Kz/ohhycj+5uM
-        HoT9qVnE1IqvJ3va7W8yIrf9v0SZmIxOG+nhrBxjsopzgtplftvAINm1qOF61C6XiA1Ms12LGq5H7XKT
-        2cBInZJ922RFDcdQu1ynNjDXp2TfNllRwzHUrl6A5RiTVWcBtVtgOcZkFbfgHcPcQ+gYk1XnEM5tQ8eY
-        rDptuOQgusKw+ChGNZeR/YYYU+9lhGquY/sMMaTR6xgt+kGCFv8kQ4t+lFp8OsdFAIcn2x0I33jggJyT
-        n+UWq4zbYehhBgnTjJHKXAd+Y+NZ7HNDrsm/vC32icMSu6MWYskxuOcZ0S70LIOjr0gf+BLTabVNxNQa
-        +vecWw0bzxiv/xNuXE3zB3OTU+NOAtWKAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>

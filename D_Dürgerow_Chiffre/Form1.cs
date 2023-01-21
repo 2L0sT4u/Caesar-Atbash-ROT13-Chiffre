@@ -9,13 +9,14 @@ namespace D_Dürgerow_Chiffre
             panel02.Visible = false; //Panel auf dem Knöpfe für verschiedene Optionen sind, ist zu beginn nicht sichtbar
             this.MaximizeBox = false; //verhindert, dass das Formular maximiert werden kann (Vollbild)
             this.FormBorderStyle = FormBorderStyle.FixedSingle; //verhindert, dass die Größe des Formulares verändert werden kann
+            pictureBox2.Visible = false;
         }
 
         bool chiff = true; // boolean, true->chiffrieren, false->dechiffrieren
         string chiffre = "Cäsar"; //string zum speichern des ausgewählten chiffre
         int schlüssel; //int zum Speichern der Anzahl der Stellen, um die in Cäsar verschoben werden soll
         string buchstaben = "GroßUndKlein";
-        string leerzeichen = "behalten";
+        bool leerzeichen = false;
         string zeichen = "ASCII";
         int wiederholungen = 1;
 
@@ -56,7 +57,7 @@ namespace D_Dürgerow_Chiffre
             //Klartext und Geheimtext tauschen
             (textBox1.Text, textBox2.Text) = (textBox2.Text, textBox1.Text);
             (lblSp1.Text, lblSp2.Text) = (lblSp2.Text, lblSp1.Text);
-
+            if (chiff == true) pictureBox2.Visible = true; else pictureBox2.Visible = false;
             chiff = chiff == true ? chiff = false : chiff = true; //wenn chiff=true mach chiff=false ... wenn chiff =/= true (=false) mach chiff=true
         }
 
@@ -64,33 +65,37 @@ namespace D_Dürgerow_Chiffre
         {
             lblChf.Text = "Chiffre: Cäsar"; //Überschrift zeigt Cäsar an
             chiffre = "Cäsar"; //Cäsar wird als ausgewähltes Chiffre gespeichert
-            numericUpDown1.Visible = true; //numericUpDown-Komponente, um für Cäsar n festzulegen wird sichtbar
+            numericUpDown1.Visible = true; //numericUpDown-Komponente, um für Cäsar verschiebung festzulegen wird sichtbar
             label1.Visible = true; //text vor numericUpDown ebenfalls sichtbar
             label2.Visible = true; //text nach numericUpDown ebenfalls sichtbar
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
+            if (chiff == false) pictureBox2.Visible = true;
+            if (chiff == true) pictureBox2.Visible = false;
         }
 
         private void btn2_Click(object sender, EventArgs e) //button Atbash
         {
             lblChf.Text = "Chiffre: Atbash"; //Überschrift zeigt Atbash an
             chiffre = "Atbash"; //Atbash wird als ausgewähltes Chiffre gespeichert
-            numericUpDown1.Visible = false; //numericUpDown-Komponente, um für Cäsar n festzulegen wird nicht sichtbar
+            numericUpDown1.Visible = false; //numericUpDown-Komponente, um für Cäsar verschiebung festzulegen wird nicht sichtbar
             label1.Visible = false; //text vor numericUpDown ebenfalls nicht sichtbar
             label2.Visible = false; //text nach numericUpDown ebenfalls nicht sichtbar
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
+            pictureBox2.Visible = false;
         }
 
         private void btn3_Click(object sender, EventArgs e) //button ROT13
         {
             lblChf.Text = "Chiffre: ROT13"; //Überschrift zeigt ROT13 an
             chiffre = "ROT13"; //ROT13 wird als ausgewähltes Chiffre gespeichert
-            numericUpDown1.Visible = false; // numericUpDown - Komponente, um für Cäsar n festzulegen wird nicht sichtbar
+            numericUpDown1.Visible = false; // numericUpDown - Komponente, um für Cäsar verschiebung festzulegen wird nicht sichtbar
             label1.Visible = false; //text vor numericUpDown ebenfalls nicht sichtbar
             label2.Visible = false; //text nach numericUpDown ebenfalls nicht sichtbar
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
+            pictureBox2.Visible = false;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e) //Anzahl um wie viel verschoben werden soll in Variable speichern
@@ -103,12 +108,12 @@ namespace D_Dürgerow_Chiffre
             if (btnLZE.Text == "Leerzeichen entfernen")
             {
                 btnLZE.Text = "Leerzeichen behalten";
-                leerzeichen = "behalten";
+                leerzeichen = true;
             }
             else
             {
                 btnLZE.Text = "Leerzeichen entfernen";
-                leerzeichen = "entfernen";
+                leerzeichen = false;
             }
         }
         private void btnGroß_Click(object sender, EventArgs e)
@@ -179,6 +184,22 @@ namespace D_Dürgerow_Chiffre
         {
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            wiederholungen = (int)numericUpDown2.Value;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            CäsarBruteForceAttack c = new CäsarBruteForceAttack();
+            c.Show();
+        }
+
+        private void pictureBox2_MouseHover(object sender, EventArgs e)
+        {
+            
         }
     }
 }

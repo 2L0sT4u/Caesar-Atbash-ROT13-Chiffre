@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel02 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
@@ -44,6 +45,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.lblChf = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,6 +57,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel02.SuspendLayout();
@@ -63,6 +67,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -73,6 +78,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -266,6 +272,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.numericUpDown2);
             this.splitContainer1.Panel1.Controls.Add(this.lblChf);
             // 
             // splitContainer1.Panel2
@@ -275,14 +283,45 @@
             this.splitContainer1.SplitterDistance = 56;
             this.splitContainer1.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(284, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(176, 20);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Mehrfachverschlüsselung:";
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.numericUpDown2.Location = new System.Drawing.Point(341, 24);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            52,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.ReadOnly = true;
+            this.numericUpDown2.Size = new System.Drawing.Size(53, 25);
+            this.numericUpDown2.TabIndex = 7;
+            this.numericUpDown2.ThousandsSeparator = true;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            // 
             // lblChf
             // 
             this.lblChf.AutoSize = true;
             this.lblChf.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblChf.Location = new System.Drawing.Point(4, 3);
             this.lblChf.Name = "lblChf";
-            this.lblChf.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.lblChf.Size = new System.Drawing.Size(289, 50);
+            this.lblChf.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lblChf.Size = new System.Drawing.Size(249, 50);
             this.lblChf.TabIndex = 0;
             this.lblChf.Text = "Chiffre: Cäsar";
             // 
@@ -345,6 +384,11 @@
             this.numericUpDown1.Size = new System.Drawing.Size(53, 25);
             this.numericUpDown1.TabIndex = 4;
             this.numericUpDown1.ThousandsSeparator = true;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // lblSp2
@@ -392,6 +436,7 @@
             // 
             // splitContainer3.Panel2
             // 
+            this.splitContainer3.Panel2.Controls.Add(this.pictureBox2);
             this.splitContainer3.Panel2.Controls.Add(this.textBox2);
             this.splitContainer3.Size = new System.Drawing.Size(470, 297);
             this.splitContainer3.SplitterDistance = 142;
@@ -412,6 +457,17 @@
             this.textBox1.Size = new System.Drawing.Size(468, 141);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(426, 11);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(33, 33);
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pictureBox2.MouseHover += new System.EventHandler(this.pictureBox2_MouseHover);
             // 
             // textBox2
             // 
@@ -452,6 +508,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -465,6 +522,7 @@
             this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -496,5 +554,8 @@
         private Button btnLZE;
         private Button button2;
         private Button button3;
+        private NumericUpDown numericUpDown2;
+        private Label label3;
+        private PictureBox pictureBox2;
     }
 }
